@@ -65,7 +65,7 @@ with st.expander("📋 Ver datos completos"):
     st.dataframe(df, use_container_width=True)
 
 st.divider()
-st.header("📊 1. Resumen del Conjunto de Datos")
+st.header(" 1. Resumen del Conjunto de Datos")
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
@@ -78,39 +78,39 @@ with col4:
     st.metric("Magnitud mínima", f"{df[col_magnitud].min():.1f}")
 
 st.info("""
-**📝 Interpretación:** El conjunto de datos cuenta con 23,412 registros de sismos significativos 
+** Interpretación:** El conjunto de datos cuenta con 23,412 registros de sismos significativos 
 registrados durante 52 años. La magnitud promedio es de aproximadamente 5.88, con valores 
 que van desde 5.5 hasta más de 8.0 en la escala de Richter.
 """)
 
 st.divider()
-st.header("📊 2. Distribución por Categoría de Magnitud")
+st.header(" 2. Distribución por Categoría de Magnitud")
 
 conteo = df['Categoria_Magnitud'].value_counts()
 st.bar_chart(conteo, use_container_width=True)
 
 st.info("""
-**📝 Interpretación:** La mayoría de los sismos registrados corresponden a la categoría 
+** Interpretación:** La mayoría de los sismos registrados corresponden a la categoría 
 "Leve" (5.5 - 5.7), seguidos por los "Moderados". A medida que aumenta la magnitud, 
 la frecuencia disminuye, siendo los sismos "Muy fuertes" los menos comunes pero los 
 que tienen mayor impacto.
 """)
 
 st.divider()
-st.header("📈 3. Evolución de Sismos por Año")
+st.header(" 3. Evolución de Sismos por Año")
 
 sismos_por_anio = df.groupby('Anio').size()
 st.line_chart(sismos_por_anio, use_container_width=True)
 
 st.info("""
-**📝 Interpretación:** El gráfico muestra la cantidad de sismos registrados cada año. 
+** Interpretación:** El gráfico muestra la cantidad de sismos registrados cada año. 
 Se observa que la actividad sísmica ha variado a lo largo de las décadas, con algunos 
 periodos de mayor actividad que otros. Esto puede deberse tanto a cambios reales en 
 la actividad sísmica como a mejoras en la tecnología de detección a lo largo del tiempo.
 """)
 
 st.divider()
-st.header("📊 4. Distribución de la Magnitud")
+st.header(" 4. Distribución de la Magnitud")
 
 fig, ax = plt.subplots(figsize=(10, 5))
 sns.histplot(df[col_magnitud], bins=30, kde=True, color='#2ecc71', ax=ax)
@@ -120,13 +120,13 @@ ax.set_title('Histograma de Magnitudes')
 st.pyplot(fig)
 
 st.info("""
-**📝 Interpretación:** La distribución de magnitudes se concentra principalmente entre 
+** Interpretación:** La distribución de magnitudes se concentra principalmente entre 
 5.5 y 6.5, formando una distribución asimétrica hacia la derecha. Esto confirma que 
 los sismos de gran magnitud son eventos menos frecuentes.
 """)
 
 st.divider()
-st.header("🌍 5. Profundidad vs. Magnitud")
+st.header(" 5. Profundidad vs. Magnitud")
 
 fig2, ax2 = plt.subplots(figsize=(10, 6))
 sns.scatterplot(x='Magnitude', y='Depth', data=df, alpha=0.5, color='#3498db', ax=ax2)
@@ -136,13 +136,13 @@ ax2.set_title('Relación entre Profundidad y Magnitud')
 st.pyplot(fig2)
 
 st.info("""
-**📝 Interpretación:** En este gráfico se observa la relación entre la profundidad 
+** Interpretación:** En este gráfico se observa la relación entre la profundidad 
 del sismo y su magnitud. No se aprecia una correlación fuerte, lo que indica que un 
 sismo puede ser fuerte tanto en la superficie como a gran profundidad.
 """)
 
 st.divider()
-st.header("📝 Conclusiones Generales")
+st.header(" Conclusiones Generales")
 
 st.write("""
 A partir del análisis realizado con los datos de sismos significativos entre 1965 y 2016, 
@@ -160,12 +160,12 @@ se pueden destacar las siguientes conclusiones:
 - **🔹 Importancia del monitoreo continuo:** Conocer el comportamiento histórico de los sismos 
   ayuda a entender el riesgo sísmico y prepararse mejor ante eventos futuros.
 
-> 💡 *El análisis de datos sísmicos es fundamental para la prevención de desastres naturales 
+>  *El análisis de datos sísmicos es fundamental para la prevención de desastres naturales 
 > y la seguridad de las comunidades en zonas de riesgo.*
 """)
 
 st.divider()
-st.caption("✅ Análisis realizado con datos de terremotos significativos | Dashboard creado para el trabajo de análisis de datos")
+st.caption(" Análisis realizado con datos de terremotos significativos | Dashboard creado para el trabajo de análisis de datos")
 
 st.subheader("Distribución por categoría de magnitud")
 conteo = df['Categoria_Magnitud'].value_counts()

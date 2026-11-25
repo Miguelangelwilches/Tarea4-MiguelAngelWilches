@@ -79,14 +79,9 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.metric("Total de registros", f"{len(df):,}")
 with col2:
-    st.metric("Magnitud promedio", f"{df['Magnitud'].mean():.2f}")
+    st.metric("Magnitud promedio", f"{df['Magnitude'].mean():.2f}")
 with col3:
     st.metric("Año más reciente", f"{df['Anio'].max():.0f}")
-
-st.subheader("Distribución por categoría de magnitud")
-conteo = df['Categoria_Magnitud'].value_counts()
-st.bar_chart(conteo)
-
 
 st.subheader("Distribución por categoría de magnitud")
 conteo = df['Categoria_Magnitud'].value_counts()

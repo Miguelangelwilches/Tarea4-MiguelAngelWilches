@@ -141,8 +141,89 @@ del sismo y su magnitud. No se aprecia una correlación fuerte, lo que indica qu
 sismo puede ser fuerte tanto en la superficie como a gran profundidad.
 """)
 
+# --- SECCIÓN DE INTELIGENCIA ARTIFICIAL ---
+st.divider()
+st.header(" Uso de Inteligencia Artificial en el Análisis")
+
+st.subheader(" Bitácora de Actividades con IA")
+
+st.markdown("""
+| Actividad | Descripción |
+|---|---|
+| **Consulta inicial** | Solicitud de guía paso a paso para importar y analizar un conjunto de datos sísmicos en Google Colab |
+| **Carga de datos** | La IA proporcionó el código para importar el archivo CSV desde Kaggle y desde enlace directo en GitHub |
+| **Análisis descriptivo** | Se pidió apoyo para calcular e interpretar métricas como media, mediana, desviación estándar y coeficiente de variación |
+| **Matriz de correlación** | La IA ayudó a interpretar los valores de correlación entre variables, explicando la diferencia entre correlación y causalidad |
+| **Generación de gráficos** | Se solicitó código para visualizar distribuciones, tendencias temporales y relaciones entre variables |
+| **Resolución de errores** | La IA ayudó a identificar y corregir errores de nombres de columnas, rutas de archivos y formato de fechas |
+| **Construcción del Dashboard** | Apoyo en la estructura, diseño y desplazamiento de la aplicación en Streamlit Cloud |
+""")
+
+st.subheader(" Ejemplo de Consulta Realizada")
+
+with st.expander("Ver prompt enviado a la IA"):
+    st.code("""
+Actualmente estoy trabajando con un conjunto de datos de terremotos significativos 
+registrados entre 1965 y 2016. Necesito que me ayudes a realizar lo siguiente:
+
+1. Importar los datos en Google Colab
+2. Realizar un análisis descriptivo de variables numéricas y categóricas
+3. Calcular e interpretar la matriz de correlación
+4. Crear visualizaciones que muestren:
+   - Distribución por categoría de magnitud
+   - Evolución temporal de los sismos
+   - Relación entre profundidad y magnitud
+
+Por favor, incluye el código en Python y una interpretación clara de cada resultado.
+    """, language="text")
+
+st.subheader(" Comparación: Análisis Propio vs. Resultados de la IA")
+
+col_ia1, col_ia2 = st.columns(2)
+
+with col_ia1:
+    st.markdown("###  Mi Análisis")
+    st.markdown("""
+    - Identifiqué que la mayoría de sismos están entre 5.5 y 6.1 de magnitud
+    - Observé que hay más sismos registrados en años recientes
+    - Noté que no hay relación clara entre profundidad y magnitud
+    - Organicé los datos y las categorías de magnitud
+    """)
+
+with col_ia2:
+    st.markdown("###  Aportes de la IA")
+    st.markdown("""
+    - Explicó por qué podría aumentar el número de sismos registrados (mejoras en tecnología)
+    - Interpretó el significado del coeficiente de variación
+    - Aclaró que correlación NO implica causalidad
+    - Sugirió mejores prácticas de visualización y limpieza de datos
+    - Resolvió errores de ejecución que no lograba identificar solo
+    """)
+
+st.subheader(" Evaluación Crítica")
+
+st.success("""
+** Aciertos y utilidad de la IA:**
+- La IA aceleró el aprendizaje al explicar conceptos que costaba entender
+- Ayudó a identificar errores en el código que habrían tomado mucho tiempo solucionar
+- Ofreció diferentes formas de visualizar los datos, permitiendo elegir la más clara
+- Las interpretaciones sirvieron como guía pero siempre fueron verificadas con los propios datos
+
+** Limitaciones observadas:**
+- En ocasiones la IA sugería rutas de archivo incorrectas que no funcionaban en el entorno de Streamlit
+- Algunos códigos debían adaptarse porque suponía nombres de columnas distintos a los reales
+- Siempre fue necesario verificar que los resultados tuvieran sentido lógico con el contexto del problema
+
+** Reflexión final:**
+> La Inteligencia Artificial es una herramienta poderosa, pero **no reemplaza el pensamiento crítico**. 
+> Es responsabilidad de quien la usa verificar, validar y entender cada resultado. En este trabajo, 
+> la IA funcionó como un tutor disponible en cualquier momento, guiando el proceso sin dar 
+> las respuestas finales sin antes verificar que se comprendiera lo que se estaba haciendo.
+""")
+
 st.divider()
 st.header(" Conclusiones Generales")
+
 
 st.write("""
 A partir del análisis realizado con los datos de sismos significativos entre 1965 y 2016, 

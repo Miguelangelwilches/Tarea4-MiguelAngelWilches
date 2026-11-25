@@ -26,12 +26,16 @@ st.markdown("---")
 # ==============================
 @st.cache_data
 def cargar_datos():
-    df = pd.read_csv("dataset.csv")
+    import os
+    ruta = os.path.join(os.path.dirname(__file__), "dataset.csv")
+    df = pd.read_csv(ruta)
     
     bins = [5.5, 5.8, 6.2, 6.7, np.inf]
-    etiquetas = ['5.5 - 5.7 (Leve)', '5.8 - 6.1 (Moderado)', 
-                 '6.2 - 6.6 (Fuerte)', '≥ 6.7 (Muy fuerte)']
-    df['Categoria_Magnitud'] = pd.cut(df['Magnitude'], bins=bins, labels=etiquetas, include_lowest=True)
+    etiquetas = ['5.5 - 5.7 (Leve)', 
+                 '5.8 - 6.1 (Moderado)',
+                 '6.2 - 6.6 (Fuerte)', 
+                 '≥ 6.7 (Muy fuerte)']
+    df['Categoria_Magnitud'] = pd.cut(df['Magnitud'], bins=bins, labels=etiquetas, include_lowest=True)
     
     df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
     df['Anio'] = df['Date'].dt.year
@@ -39,6 +43,7 @@ def cargar_datos():
     return df
 
 df = cargar_datos()
+
 
 # ==============================
 # BARRA LATERAL: FILTROS

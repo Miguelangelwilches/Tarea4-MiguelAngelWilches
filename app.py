@@ -15,32 +15,57 @@ st.divider()
 @st.cache_data(show_spinner="Cargando datos...")
 def cargar_datos():
     try:
-        # Intento 1: archivo local (más común)
         df = pd.read_csv("dataset.csv")
     except:
         try:
-            # Intento 2: con ruta relativa
             df = pd.read_csv("./dataset.csv")
         except Exception as e:
             st.error(f"No se pudo cargar el archivo de datos. Error: {type(e).__name__}")
             st.warning("Verifica que el archivo dataset.csv esté subido en tu repositorio de GitHub.")
             st.stop()
     
-    # Procesamiento de datos
+    # Mostrar nombres de columnas para verificar
+    st.write("✅ Columnas encontradas:", list(df.columns))
+    
+    # Normalizar nombres (quitar espacios)
+    df.columns = df.columns.str.strip()
+    
+    # Buscar columna de magnitud automáticamente
+    col_magnitud = None
+    for col in df.columns:
+        if 'magnitud' in col.lower():
+            col_magnitud = col
+            break
+    
+    if col_magnitud is None:
+        st.error("❌ No se encontró la columna de magnitud")
+        st.stop()
+    
+    # Crear categoría de magnitud
     bins = [5.5, 5.8, 6.2, 6.7, np.inf]
     etiquetas = ['5.5 - 5.7 (Leve)', 
                  '5.8 - 6.1 (Moderado)',
                  '6.2 - 6.6 (Fuerte)', 
                  '≥ 6.7 (Muy fuerte)']
-    df['Categoria_Magnitud'] = pd.cut(df['Magnitud'], bins=bins, labels=etiquetas, include_lowest=True)
+    df['Categoria_Magnitud'] = pd.cut(df[col_magnitud], bins=bins, labels=etiquetas, include_lowest=True)
     
-    df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
-    df['Anio'] = df['Date'].dt.year
+    # Buscar columna de fecha automáticamente
+    col_fecha = None
+    for col in df.columns:
+        if 'date' in col.lower() or 'fecha' in col.lower():
+            col_fecha = col
+            break
+    
+    if col_fecha:
+        df['Date'] = pd.to_datetime(df[col_fecha], errors='coerce')
+        df['Anio'] = df['Date'].dt.year
     
     return df
 
-# Ejecutar carga
+
+# Ejecutar la función
 df = cargar_datos()
+
 
 # Si llegamos aquí, los datos cargaron bien
 st.success(f"✅ Datos cargados correctamente: {len(df):,} registros")

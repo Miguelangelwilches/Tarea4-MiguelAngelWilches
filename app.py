@@ -16,11 +16,11 @@ st.divider()
 def cargar_datos():
     try:
         # Intento 1: archivo local (más común)
-        df = pd.read_csv("dataset.csv")
+        df = pd.read_csv("dataset.csv.csv")
     except:
         try:
             # Intento 2: con ruta relativa
-            df = pd.read_csv("./dataset.csv")
+            df = pd.read_csv("./dataset.csv.csv")
         except Exception as e:
             st.error(f"No se pudo cargar el archivo de datos. Error: {type(e).__name__}")
             st.warning("Verifica que el archivo dataset.csv esté subido en tu repositorio de GitHub.")

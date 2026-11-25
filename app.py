@@ -26,9 +26,8 @@ st.markdown("---")
 # ==============================
 @st.cache_data
 def cargar_datos():
-    import os
-    ruta = os.path.join(os.path.dirname(__file__), "dataset.csv")
-    df = pd.read_csv(ruta)
+    url = "https://raw.githubusercontent.com/Miguelangelwilches/Tarea4-MiguelAngelWilches/main/dataset.csv"
+    df = pd.read_csv(url)
     
     bins = [5.5, 5.8, 6.2, 6.7, np.inf]
     etiquetas = ['5.5 - 5.7 (Leve)', 

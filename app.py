@@ -16,11 +16,11 @@ st.divider()
 def cargar_datos():
     try:
         # Intento 1: archivo local (más común)
-        df = pd.read_csv("dataset.csv.csv")
+        df = pd.read_csv("dataset.csv")
     except:
         try:
             # Intento 2: con ruta relativa
-            df = pd.read_csv("./dataset.csv.csv")
+            df = pd.read_csv("./dataset.csv")
         except Exception as e:
             st.error(f"No se pudo cargar el archivo de datos. Error: {type(e).__name__}")
             st.warning("Verifica que el archivo dataset.csv esté subido en tu repositorio de GitHub.")
@@ -57,6 +57,11 @@ with col2:
     st.metric("Magnitud promedio", f"{df['Magnitud'].mean():.2f}")
 with col3:
     st.metric("Año más reciente", f"{df['Anio'].max():.0f}")
+
+st.subheader("Distribución por categoría de magnitud")
+conteo = df['Categoria_Magnitud'].value_counts()
+st.bar_chart(conteo)
+
 
 st.subheader("Distribución por categoría de magnitud")
 conteo = df['Categoria_Magnitud'].value_counts()
